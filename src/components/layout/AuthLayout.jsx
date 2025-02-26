@@ -35,7 +35,7 @@ const AuthLayout = ({ children, title, subtitle }) => {
       {/* Right Side - Image */}
       <div
         className="hidden lg:block lg:w-1/2 bg-cover bg-center"
-        style={{ backgroundImage: "url('/assets/images/workspace.jpg')" }}
+        style={{ backgroundImage: 'url("/assets/images/workspace.jpg")' }}
       >
         <div className="h-full w-full bg-black bg-opacity-20 flex items-center justify-center">
           <div className="px-12 py-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-lg text-white">
