@@ -7,6 +7,7 @@ const Login = () => {
     <AuthLayout
       title="Sign in to your account"
       subtitle="Welcome back! Please enter your details to continue."
+      bgImage="/assets/images/workspace.jpg"
     >
       <LoginForm />
     </AuthLayout>
