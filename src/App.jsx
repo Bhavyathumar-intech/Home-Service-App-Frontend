@@ -5,7 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Footer from "./components/layout/Footer";  // Import Footer
+import Contact from "./pages/ContactUs";
+import Footer from "./components/layout/Footer";  
 
 const App = () => {
   // Simple auth check
@@ -36,6 +37,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer /> {/* Render Footer here */}
     </Router>
