@@ -8,7 +8,7 @@ const AuthLayout = ({ children, title, subtitle, bgImage }) => {
     <div className="flex min-h-screen bg-gray-100 text-gray-900">
       {/* Left Side - Background (Image) */}
       <div
-        className="hidden lg:block lg:w-1/2 h-screen"
+        className="hidden lg:block lg:w-2/3 h-screen ml-15 mt-6 mb-5"
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
@@ -17,8 +17,8 @@ const AuthLayout = ({ children, title, subtitle, bgImage }) => {
       ></div>
       
       {/* Right Side - Auth Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4">
-        <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-xl">
+      <div className="w-3/7  flex items-center justify-center p-4 mb-5 mr-5">
+        <div className="w-xl  max-w-md p-8 bg-white shadow-lg rounded-xl">
           {/* Logo */}
           <Link to="/">
             <div className="flex items-center justify-center mb-4">
