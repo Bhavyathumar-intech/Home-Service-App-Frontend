@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 import Input from "../common/Input";
 import Button from "../common/Button";
 
@@ -43,14 +44,34 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    console.log("Submit button clicked");
+
+    if (!validate()) {
+      console.log("Validation failed", errors);
+      return;
+    }
+
     setIsLoading(true);
+    console.log("Sending request to backend...");
+
     try {
-      const response = await axios.post("https://your-api.com/auth/login", formData);
-      localStorage.setItem("authToken", response.data.token);
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        email: formData.email,
+        password: formData.password,
+        role: formData.role.toUpperCase(), // Convert role to uppercase
+      });
+
+      console.log("Login successful", response.data);
+
+      // Store JWT token in cookies
+      Cookies.set("authToken", response.data, { expires: 7 });
+
+      // Store user info in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
+
       navigate("/dashboard");
     } catch (error) {
+      console.error("Login error:", error.response?.data);
       setErrors({
         form: error.response?.data?.message || "Login failed. Please try again.",
       });
@@ -107,9 +128,9 @@ const LoginForm = () => {
       </form>
       <div className="text-center mt-2">
         <p className="text-sm text-gray-600">
-          Not Registerd?{" "}
+          Not Registered?{" "}
           <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
-            Register Now 
+            Register Now
           </Link>
         </p>
       </div>
