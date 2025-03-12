@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -55,21 +55,33 @@ const LoginForm = () => {
     console.log("Sending request to backend...");
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
+      const response = await axios.post("http://localhost:8081/auth/login", {
         email: formData.email,
         password: formData.password,
         role: formData.role.toUpperCase(), // Convert role to uppercase
       });
-
+      console.log(formData.role)
       console.log("Login successful", response.data);
+      
+      // Extract token from response
+      const token = response.data.token.split('=')[1].split(';')[0];  // Extract JWT only
 
-      // Store JWT token in cookies
-      Cookies.set("authToken", response.data, { expires: 7 });
+      // Store token in cookies for 7 days
+      Cookies.set("authToken", token, { expires: 7, secure: true, sameSite: "Lax", path: "/" });
+
+      //  Store JWT token in cookies
+      // Cookies.set("authToken", response.data, { expires: 7 });
 
       // Store user info in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
-
+      
+      
+      console.log(formData.role);
+      if(formData.role=='User'){
+        navigate("/services");
+      }else{
       navigate("/dashboard");
+      }
     } catch (error) {
       console.error("Login error:", error.response?.data);
       setErrors({
@@ -118,7 +130,7 @@ const LoginForm = () => {
             className="w-full p-2 border border-gray-300 rounded-lg"
           >
             <option value="User">User</option>
-            <option value="ServiceProvider">Service Provider</option>
+            <option value="ServiceProvider">SERVICEPROVIDER</option>
           </select>
         </div>
 

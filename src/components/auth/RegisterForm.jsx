@@ -65,7 +65,7 @@ const RegisterForm = () => {
     console.log("Sending request to backend...");
 
     try {
-      await axios.post("http://localhost:8080/auth/register", {
+      await axios.post("http://localhost:8081/auth/register", {
         name: formData.name,
         email: formData.email,
         phoneNumber: Number(formData.phoneNumber) ,
@@ -152,7 +152,7 @@ const RegisterForm = () => {
             className="block w-full p-2 border border-gray-300 rounded-lg"
           >
             <option value="User">User</option>
-            <option value="ServiceProvider">Service Provider</option>
+            <option value="ServiceProvider">SERVICEPROVIDER</option>
           </select>
         </div>
 
