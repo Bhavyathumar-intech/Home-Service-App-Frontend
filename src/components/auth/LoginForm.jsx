@@ -55,7 +55,7 @@ const LoginForm = () => {
     console.log("Sending request to backend...");
 
     try {
-      const response = await axios.post("http://localhost:8081/auth/login", {
+      const response = await axios.post("http://localhost:8080/auth/login", {
         email: formData.email,
         password: formData.password,
         role: formData.role.toUpperCase(), // Convert role to uppercase

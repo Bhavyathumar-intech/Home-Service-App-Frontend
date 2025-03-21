@@ -24,7 +24,7 @@ export const createProviderDetails=(formData)=>async(dispatch)=>{
       console.log("enter the reducer")
 
       const {data}=await axios.post(
-         `http://localhost:8081/api/service-providers/register`,
+         `http://localhost:8081/service-providers/register`,
          //JSON.stringify(formData), // Convert formData to JSON
          formData,
          config

@@ -65,7 +65,7 @@ const RegisterForm = () => {
     console.log("Sending request to backend...");
 
     try {
-      await axios.post("http://localhost:8081/auth/register", {
+      await axios.post("http://localhost:8080/api/auth/register", {
         name: formData.name,
         email: formData.email,
         phoneNumber: Number(formData.phoneNumber) ,
