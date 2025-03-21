@@ -106,7 +106,7 @@ const isAuthenticated = () => {
 };
 
 const isProvider = () => {
-  return isAuthenticated() && getUserRole() === "SERVICEPROVIDER";
+  return isAuthenticated() && getUserRole() === "PROVIDER";
 };
 
 //  Protected route for "PROVIDER" role

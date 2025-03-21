@@ -17,7 +17,7 @@ const LoginForm = () => {
 
   const roleColors = {
     User: "bg-blue-100",
-    ServiceProvider: "bg-green-100",
+    PROVIDER: "bg-green-100",
   };
 
   const handleChange = (e) => {
@@ -47,12 +47,12 @@ const LoginForm = () => {
     console.log("Submit button clicked");
 
     if (!validate()) {
-      console.log("Validation failed", errors);
+      //console.log("Validation failed", errors);
       return;
     }
 
     setIsLoading(true);
-    console.log("Sending request to backend...");
+    //console.log("Sending request to backend...");
 
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
@@ -60,7 +60,7 @@ const LoginForm = () => {
         password: formData.password,
         role: formData.role.toUpperCase(), // Convert role to uppercase
       });
-      console.log(formData.role)
+      //console.log(formData.role)
       console.log("Login successful", response.data);
       
       // Extract token from response
@@ -70,12 +70,15 @@ const LoginForm = () => {
       Cookies.set("authToken", token, { expires: 7, secure: true, sameSite: "Lax", path: "/" });
 
       //  Store JWT token in cookies
+      //console.log("authToken",response.data);
       // Cookies.set("authToken", response.data, { expires: 7 });
-
+       
       // Store user info in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
       
       
+      console.log("formdata role",formData.role);
+     
       console.log(formData.role);
       if(formData.role=='User'){
         navigate("/services");
@@ -129,8 +132,8 @@ const LoginForm = () => {
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded-lg"
           >
-            <option value="User">User</option>
-            <option value="ServiceProvider">SERVICEPROVIDER</option>
+           <option value="User">User</option>
+           <option value="PROVIDER">SERVICEPROVIDER</option>
           </select>
         </div>
 
