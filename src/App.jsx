@@ -85,7 +85,10 @@ import UpdateService from "./components/services/UpdateService";
 import AddServiceForm from "./components/services/AddServiceForm"
 import ViewService from "./components/services/ViewService"
 import ProviderDetails from "./components/services/ProviderDetails"
-import { MyProfile } from "./components/services/MyProfile";
+import  ProviderProfile  from "./components/services/ProviderProfile";
+import UserProfile from "./components/User/UserProfile";
+import UserDetailsForm from "./components/User/UserDetailsForm";
+
 const getUserRole = () => {
   const authToken = Cookies.get("authToken");
   if (!authToken) return null;
@@ -141,8 +144,10 @@ const App = () => {
         <Route path="/update-service" element ={<UpdateService/>} />
         <Route path="/view-services" element ={<ViewService/>} />
         <Route path="/provider-details/register" element ={<ProviderDetails/>} />
-        <Route path="/profile" element ={<MyProfile/>} />
-        
+        <Route path="/provider-profile" element ={<ProviderProfile/>} />
+        <Route path = "/user-profile" element={<UserProfile/>}/>
+        <Route path="/Account" element ={<UserDetailsForm/>} />    
+
       </Routes>
       <Footer />
     </Router>

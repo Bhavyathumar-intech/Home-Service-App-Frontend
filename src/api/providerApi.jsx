@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
-export const providerApi = createApi({
+  const providerApi = createApi({
     reducerPath: 'providerApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/api/service-providers',
+        credentials: "include", // Important: Ensures cookies are sent
         prepareHeaders: (headers) => {
             const token = Cookies.get("authToken");
             console.log("token",token)
@@ -39,3 +40,4 @@ export const providerApi = createApi({
 
 
 export const { useCreateProviderMutation,useGetProviderDetailsQuery  } = providerApi;
+export default providerApi;

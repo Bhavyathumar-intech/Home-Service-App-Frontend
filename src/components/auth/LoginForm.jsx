@@ -64,8 +64,9 @@ const LoginForm = () => {
       console.log("Login successful", response.data);
       
       // Extract token from response
-      const token = response.data.token.split('=')[1].split(';')[0];  // Extract JWT only
+      //const token = response.data.token.split('=')[1].split(';')[0];  // Extract JWT only
 
+      const token = response.data.token
       // Store token in cookies for 7 days
       Cookies.set("authToken", token, { expires: 7, secure: true, sameSite: "Lax", path: "/" });
 

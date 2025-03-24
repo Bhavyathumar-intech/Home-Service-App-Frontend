@@ -58,7 +58,7 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode"; // Import jwt-decode
 import { useGetProviderDetailsQuery } from "../../api/providerApi";
 
-export const MyProfile = () => {
+ const ProviderProfile = () => {
   const [userId, setUserId] = useState();
 
   useEffect(() => {
@@ -125,3 +125,4 @@ export const MyProfile = () => {
     </div>
   );
 };
+export default ProviderProfile

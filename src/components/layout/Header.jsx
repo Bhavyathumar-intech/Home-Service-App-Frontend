@@ -116,9 +116,14 @@ const Header = () => {
       </Link>
 
       <nav className="hidden md:flex space-x-6">
-        {isAuthenticated && userRole === "SERVICEPROVIDER" && (
+        {isAuthenticated && userRole === "PROVIDER" && (
           <Link to="/dashboard" className="text-white hover:text-gray-200 transition duration-300 underline-offset-4 hover:underline">
             Dashboard
+          </Link>
+        )}
+          {isAuthenticated && userRole === "USER" && (
+          <Link to="/user-profile" className="text-white hover:text-gray-200 transition duration-300 underline-offset-4 hover:underline">
+            Profile
           </Link>
         )}
         <Link to="/" className="text-white hover:text-gray-200 transition duration-300 underline-offset-4 hover:underline">
