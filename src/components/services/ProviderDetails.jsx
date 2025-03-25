@@ -82,7 +82,7 @@ const ProviderDetails = () => {
        await createProvider(formData).unwrap();
        toast.success("Provider added successfully!");
       setTimeout(() => {
-        navigate("/dashboard"); // Redirect to myself profile
+        navigate("/me"); // Redirect to myself profile
       }, 2000);
     } catch (error) {
       console.error("Error saving provider details:", error);

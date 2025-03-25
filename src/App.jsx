@@ -88,7 +88,7 @@ import ProviderDetails from "./components/services/ProviderDetails"
 import  ProviderProfile  from "./components/services/ProviderProfile";
 import UserProfile from "./components/User/UserProfile";
 import UserDetailsForm from "./components/User/UserDetailsForm";
-
+import Me from "./components/User/Me";
 const getUserRole = () => {
   const authToken = Cookies.get("authToken");
   if (!authToken) return null;
@@ -147,6 +147,7 @@ const App = () => {
         <Route path="/provider-profile" element ={<ProviderProfile/>} />
         <Route path = "/user-profile" element={<UserProfile/>}/>
         <Route path="/Account" element ={<UserDetailsForm/>} />    
+        <Route path="/userProfile" element ={<Me/>} />    
 
       </Routes>
       <Footer />

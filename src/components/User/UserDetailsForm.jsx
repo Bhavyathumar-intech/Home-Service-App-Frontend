@@ -1,9 +1,10 @@
-import React, { useState, useEffect} from "react";
+import  { useState, useEffect} from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import  {useCreateUserDetailsMutation}  from "../../api/userApi";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode"; // Ensure jwtDecode is imported
+import { useNavigate } from "react-router-dom";
 
 const UserDetailsForm = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ const UserDetailsForm = () => {
     state: "",
     country: "",
     zipCode: "",
-     dateOfBirth: "",
+    dateOfBirth: "",
     profilePicture: null,
    
     
@@ -22,7 +23,7 @@ const UserDetailsForm = () => {
   const [errors, setErrors] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
   const [createUserDetails] = useCreateUserDetailsMutation();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     const token = Cookies.get("authToken");
     if (token) {
@@ -69,7 +70,7 @@ const UserDetailsForm = () => {
     if (!formData.country) newErrors.country = "Country is required";
     if (!formData.zipCode) newErrors.zipCode = "Zip Code is required";
     if (!formData.dateOfBirth) newErrors.dateOfBirth = "Date of Birth is required";
-     if (!formData.profilePicture) newErrors.profilePicture = "Profile Picture is required";
+    //  if (!formData.profilePicture) newErrors.profilePicture = "Profile Picture is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -82,16 +83,18 @@ const UserDetailsForm = () => {
       return;
     }
     
-     // Convert date format from "YYYY-MM-DD" to "DD-MM-YYYY"
-  const formattedDate = formData.dateOfBirth
-  ? formData.dateOfBirth.split("-").reverse().join("-")
-  : "";
+//      // Convert date format from "YYYY-MM-DD" to "DD-MM-YYYY"
+//   const formattedDate = formData.dateOfBirth
+//   ? formData.dateOfBirth.split("-").reverse().join("-")
+//   : "";
 
-const updatedFormData = { ...formData, dateOfBirth: formattedDate };
+// const updatedFormData = { ...formData, dateOfBirth: formattedDate };
     try {
-      console.log(updatedFormData)
-      await createUserDetails(updatedFormData).unwrap();
+      console.log(formData)
+     await createUserDetails(formData).unwrap();
+    //console.log("response",response)
       toast.success("User details submitted successfully!");
+      navigate("/userProfile")
       
     } catch (error) {
       toast.error(error?.data?.message || "Failed to submit user details.");
@@ -99,7 +102,7 @@ const updatedFormData = { ...formData, dateOfBirth: formattedDate };
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
+    <div className="max-w-lg mx-auto mt-4 bg-white shadow-lg rounded-lg p-6">
       <h2 className="text-2xl font-bold text-gray-700 mb-4">User Details Form</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
